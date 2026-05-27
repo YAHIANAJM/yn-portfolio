@@ -296,7 +296,7 @@ export default function TestimonialsSection() {
       })}
 
       {/* Bottom buttons */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col md:flex-row items-center gap-3 w-max">
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-row items-center gap-3 w-max">
         {hasMore && (
           <motion.button
             whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }}

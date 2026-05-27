@@ -205,7 +205,7 @@ body {
 @media (max-width: 767px) {
   body { cursor: auto; }
   .custom-cursor-dot, .custom-cursor-ring { display: none; }
-  .dl-cv-mobile { display: flex !important; align-items: center; gap: 5px; position: fixed; top: 32px; right: 16px; z-index: 60; font-family: var(--font-dm-sans); font-size: 9px; font-weight: 700; letter-spacing: 0.18em; color: #ffffff !important; background: #A8264A !important; padding: 7px 13px; border-radius: 4px; text-decoration: none; }
+  .dl-cv-mobile { display: flex !important; align-items: center; gap: 5px; position: fixed; top: 68px; right: 16px; z-index: 60; font-family: var(--font-dm-sans); font-size: 9px; font-weight: 700; letter-spacing: 0.18em; color: #ffffff !important; background: #A8264A !important; padding: 7px 13px; border-radius: 4px; text-decoration: none; }
   .figure-corner { bottom: 44px !important; right: -23px !important; }
   .figure-corner img { width: 130px !important; height: 210px !important; }
   .figure-bubble { padding: 3px 7px !important; font-size: 9px !important; }

@@ -123,7 +123,7 @@ function MobileMusicPill() {
       data-mobile-ui
       className="mobile-music-pill md:hidden fixed z-50 flex items-center gap-0 rounded-full overflow-hidden border transition-colors duration-300"
       style={{
-        top: 68,
+        top: 32,
         right: 16,
         height: 28,
         borderColor: playing ? "rgba(200,169,126,0.6)" : "rgba(17,24,40,0.15)",
