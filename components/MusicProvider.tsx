@@ -3,8 +3,8 @@
 import { createContext, useContext, useEffect, useRef, useState } from "react";
 
 export const TRACKS = [
-  { src: "/outfits/music/atlasaudio-jazz-519632.mp3",                                        title: "Atlas Jazz"        },
   { src: "/outfits/music/sigmamusicart-jazz-lounge-relaxing-background-music-412597.mp3",    title: "Jazz Lounge I"     },
+  { src: "/outfits/music/atlasaudio-jazz-519632.mp3",                                        title: "Atlas Jazz"        },
   { src: "/outfits/music/sigmamusicart-jazz-lounge-relaxing-background-music-514554.mp3",    title: "Jazz Lounge II"    },
 ];
 

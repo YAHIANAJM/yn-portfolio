@@ -2,14 +2,15 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useMusic } from "./MusicProvider";
 
 const navLinks = [
-  { href: "#about", label: "Work" },
-  { href: "#fits", label: "Style" },
-  { href: "#beyond", label: "Stack" },
-  { href: "#agency", label: "Agency" },
-  { href: "#contact", label: "Contact" },
+  { href: "/#about", section: "about", label: "Work" },
+  { href: "/#fits", section: "fits", label: "Style" },
+  { href: "/#beyond", section: "beyond", label: "Stack" },
+  { href: "/#agency", section: "agency", label: "Agency" },
+  { href: "/#contact", section: "contact", label: "Contact" },
 ];
 
 function PrevIcon() {
@@ -115,6 +116,8 @@ function MusicPill() {
 export default function Header({ floating = false }: { floating?: boolean }) {
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("");
+  const pathname = usePathname();
+  const isHome = pathname === "/";
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -123,7 +126,8 @@ export default function Header({ floating = false }: { floating?: boolean }) {
   }, []);
 
   useEffect(() => {
-    const ids = navLinks.map(l => l.href.replace("#", ""));
+    if (!isHome) return;
+    const ids = navLinks.map(l => l.section);
     const observers: IntersectionObserver[] = [];
     ids.forEach(id => {
       const el = document.getElementById(id);
@@ -136,7 +140,7 @@ export default function Header({ floating = false }: { floating?: boolean }) {
       observers.push(obs);
     });
     return () => observers.forEach(o => o.disconnect());
-  }, []);
+  }, [isHome]);
 
   return (
     <>
@@ -164,16 +168,16 @@ export default function Header({ floating = false }: { floating?: boolean }) {
       >
         <nav className={`flex justify-between items-center w-full px-margin-desktop ${floating ? "py-3" : "py-5"}`}>
           <div className="flex items-center gap-8">
-            {navLinks.map(({ href, label }) => {
-              const isActive = activeSection === href.replace("#", "");
+            {navLinks.map(({ href, section, label }) => {
+              const isActive = isHome && activeSection === section;
               return (
-                <a key={href} href={href}
+                <Link key={href} href={href}
                   className="relative tracking-[0.2em] uppercase text-[12px] font-bold text-on-surface-variant hover:text-deep-navy transition-colors duration-300 flex flex-col items-center gap-1"
                   style={{ fontFamily: "var(--font-dm-sans)" }}
                 >
                   {label}
                   <span style={{ display: "block", height: 2, width: isActive ? "100%" : 0, background: "#A8264A", borderRadius: 1, transition: "width 0.3s ease" }} />
-                </a>
+                </Link>
               );
             })}
           </div>
@@ -183,15 +187,15 @@ export default function Header({ floating = false }: { floating?: boolean }) {
 
       {/* ── Mobile bottom nav ── */}
       <nav className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-paper-white/95 backdrop-blur-md border-t border-warm-gold/25 flex justify-around items-center py-3 px-2">
-        {navLinks.map(({ href, label }) => {
-          const isActive = activeSection === href.replace("#", "");
+        {navLinks.map(({ href, section, label }) => {
+          const isActive = isHome && activeSection === section;
           return (
-            <a key={href} href={href} className="flex flex-col items-center gap-1">
+            <Link key={href} href={href} className="flex flex-col items-center gap-1">
               <span style={{ fontFamily: "var(--font-dm-sans)", fontSize: 10, fontWeight: 700, letterSpacing: "0.15em", color: isActive ? "#A8264A" : "rgba(17,24,40,0.45)", transition: "color 0.3s" }}>
                 {label.toUpperCase()}
               </span>
               <span style={{ width: isActive ? 16 : 0, height: 2, background: "#A8264A", borderRadius: 1, transition: "width 0.3s ease" }} />
-            </a>
+            </Link>
           );
         })}
       </nav>
