@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 // ← swap this path once you hand over the figure
-const FIGURE_SRC = "/figure/ask.png";
+const FIGURE_SRC = "/Figure/ask.png";
 
 export default function HashModal() {
   const [open, setOpen] = useState(false);
