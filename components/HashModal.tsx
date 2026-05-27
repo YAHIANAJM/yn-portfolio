@@ -89,7 +89,7 @@ export default function HashModal() {
                   src={FIGURE_SRC}
                   alt="Figure"
                   className="hidden md:block"
-                  style={{ position: "absolute", bottom: 0, left: "50%", transform: "translateX(-50%)", width: "82%", objectFit: "contain", objectPosition: "bottom center" }}
+                  style={{ position: "absolute", bottom: "8%", left: "50%", transform: "translateX(-50%)", width: "65%", objectFit: "contain", objectPosition: "bottom center" }}
                   onError={e => { (e.currentTarget as HTMLImageElement).style.display = "none"; }}
                 />
                 {/* Figure — mobile (centered) */}
@@ -98,7 +98,7 @@ export default function HashModal() {
                   src={FIGURE_SRC}
                   alt="Figure"
                   className="md:hidden"
-                  style={{ display: "block", margin: "0 auto", height: 180, objectFit: "contain", objectPosition: "bottom center" }}
+                  style={{ margin: "0 auto", height: 210, objectFit: "contain", objectPosition: "bottom center" }}
                   onError={e => { (e.currentTarget as HTMLImageElement).style.display = "none"; }}
                 />
 
