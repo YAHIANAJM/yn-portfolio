@@ -106,9 +106,10 @@ export default function TestimonialsSection() {
       .from("testimonials")
       .select("*")
       .order("created_at", { ascending: false })
-      .range(from, from + PAGE_SIZE - 1);
+      .range(from, from + PAGE_SIZE); // fetch one extra to know if more exist
     if (error || !data) return { rows: [] as TestimonialRow[], done: true };
-    return { rows: data as TestimonialRow[], done: data.length < PAGE_SIZE };
+    const hasNext = data.length > PAGE_SIZE;
+    return { rows: data.slice(0, PAGE_SIZE) as TestimonialRow[], done: !hasNext };
   }, []);
 
   // Initial load

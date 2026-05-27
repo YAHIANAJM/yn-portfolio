@@ -11,11 +11,15 @@ import AgencySection from "@/components/AgencySection";
 import ContactSection from "@/components/ContactSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import Footer from "@/components/Footer";
+import HashModal from "@/components/HashModal";
+import SectionScroller from "@/components/SectionScroller";
 
 export default function Home() {
   return (
     <>
       <CustomCursor />
+      <HashModal />
+      <SectionScroller />
       <SectionUrlTracker />
       <Header floating />
       <main>

@@ -3,11 +3,19 @@
 import { useEffect } from "react";
 import { usePathname } from "next/navigation";
 
+const SECTION_PATHS = ["/", "/about", "/fits", "/beyond", "/agency", "/contact", "/testimonials"];
+
+function sectionPath(id: string) {
+  // hero section has no clean slug — fall back to root
+  if (id === "hero" || id === "") return "/";
+  return `/${id}`;
+}
+
 export default function SectionUrlTracker() {
   const pathname = usePathname();
 
   useEffect(() => {
-    if (pathname !== "/") return;
+    if (!SECTION_PATHS.includes(pathname)) return;
 
     const sections = Array.from(document.querySelectorAll("main [id]")) as HTMLElement[];
     if (!sections.length) return;
@@ -19,14 +27,13 @@ export default function SectionUrlTracker() {
         entries.forEach(entry => {
           visible.set(entry.target.id, entry.intersectionRatio);
         });
-        // Pick the section with the highest visibility ratio
         let topId = "";
         let topRatio = 0;
         visible.forEach((ratio, id) => {
           if (ratio > topRatio) { topRatio = ratio; topId = id; }
         });
-        if (topId && topRatio > 0.1) {
-          history.replaceState(null, "", `/#${topId}`);
+        if (topRatio > 0.1) {
+          history.replaceState(null, "", sectionPath(topId));
         }
       },
       { threshold: [0.1, 0.3, 0.5, 0.7] }

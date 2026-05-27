@@ -6,12 +6,14 @@ import { usePathname } from "next/navigation";
 import { useMusic } from "./MusicProvider";
 
 const navLinks = [
-  { href: "/#about", section: "about", label: "Work" },
-  { href: "/#fits", section: "fits", label: "Style" },
-  { href: "/#beyond", section: "beyond", label: "Stack" },
-  { href: "/#agency", section: "agency", label: "Agency" },
-  { href: "/#contact", section: "contact", label: "Contact" },
+  { href: "/about",   section: "about",   label: "Work"    },
+  { href: "/fits",    section: "fits",    label: "Style"   },
+  { href: "/beyond",  section: "beyond",  label: "Stack"   },
+  { href: "/agency",  section: "agency",  label: "Agency"  },
+  { href: "/contact", section: "contact", label: "Contact" },
 ];
+
+const SECTION_PATHS = ["/", "/about", "/fits", "/beyond", "/agency", "/contact", "/testimonials"];
 
 function PrevIcon() {
   return (
@@ -117,7 +119,7 @@ export default function Header({ floating = false }: { floating?: boolean }) {
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("");
   const pathname = usePathname();
-  const isHome = pathname === "/";
+  const isHome = SECTION_PATHS.includes(pathname);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
