@@ -1,26 +1,199 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  /* ── Colors ── */
+  --color-dark-cherry: #5C1A2E;
+  --color-cherry-bright: #8B1A3A;
+  --color-cherry-glow: #A8264A;
+  --color-warm-gold: #C8A97E;
+  --color-vintage-cream: #F2EDE4;
+  --color-paper-white: #FAF8F5;
+  --color-deep-navy: #111828;
+  --color-background: #FAF8F5;
+  --color-on-background: #1b1c1a;
+  --color-on-surface: #1b1c1a;
+  --color-on-surface-variant: #45464c;
+  --color-surface: #fbf9f6;
+  --color-surface-variant: #e4e2df;
+  --color-surface-container: #efeeeb;
+  --color-surface-container-low: #f5f3f0;
+  --color-surface-bright: #fbf9f6;
+  --color-outline: #76777d;
+  --color-outline-variant: #c6c6cd;
+  --color-primary: #000000;
+  --color-on-primary: #ffffff;
+  --color-primary-container: #141b2b;
+  --color-on-primary-container: #7d8398;
+  --color-secondary: #735a36;
+  --color-secondary-container: #fddaac;
+  --color-on-secondary: #ffffff;
+  --color-tertiary: #000000;
+  --color-on-tertiary: #ffffff;
+  --color-tertiary-container: #1d1c16;
+  --color-on-tertiary-container: #87847c;
+  --color-error: #ba1a1a;
+  --color-error-container: #ffdad6;
+  --color-inverse-surface: #30312f;
+  --color-inverse-on-surface: #f2f0ed;
+  --color-inverse-primary: #bfc6dc;
+
+  /* ── Font Families ── */
+  --font-display-xl: "Bebas Neue", sans-serif;
+  --font-display-xl-mobile: "Bebas Neue", sans-serif;
+  --font-headline-lg: "Bebas Neue", sans-serif;
+  --font-body-md: "DM Sans", sans-serif;
+  --font-accent-italic: "EB Garamond", serif;
+  --font-label-caps: "DM Sans", sans-serif;
+
+  /* ── Font Sizes ── */
+  --text-display-xl: 120px;
+  --text-display-xl--line-height: 1;
+  --text-display-xl--letter-spacing: -0.02em;
+  --text-display-xl--font-weight: 400;
+
+  --text-display-xl-mobile: 72px;
+  --text-display-xl-mobile--line-height: 1;
+  --text-display-xl-mobile--font-weight: 400;
+
+  --text-headline-lg: 64px;
+  --text-headline-lg--line-height: 1.1;
+  --text-headline-lg--letter-spacing: 0.05em;
+  --text-headline-lg--font-weight: 400;
+
+  --text-body-md: 16px;
+  --text-body-md--line-height: 1.6;
+  --text-body-md--letter-spacing: 0.01em;
+  --text-body-md--font-weight: 400;
+
+  --text-accent-italic: 28px;
+  --text-accent-italic--line-height: 1.4;
+  --text-accent-italic--font-weight: 400;
+
+  --text-label-caps: 12px;
+  --text-label-caps--line-height: 1;
+  --text-label-caps--letter-spacing: 0.2em;
+  --text-label-caps--font-weight: 700;
+
+  /* ── Spacing ── */
+  --spacing-section-gap: 160px;
+  --spacing-stack-sm: 12px;
+  --spacing-gutter: 32px;
+  --spacing-margin-desktop: 80px;
+  --spacing-margin-mobile: 24px;
+  --spacing-stack-md: 24px;
+  --spacing-stack-lg: 48px;
+
+  /* ── Border Radius ── */
+  --radius-DEFAULT: 0.25rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+  --radius-full: 9999px;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ── Base ── */
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  cursor: none;
+  background-color: #FAF8F5;
+  overflow-x: hidden;
+  font-family: "DM Sans", sans-serif;
+  color: #1b1c1a;
 }
+
+/* Force cursor:none on all interactive elements — UA stylesheet overrides body otherwise */
+*, *::before, *::after {
+  cursor: none !important;
+}
+
+::selection {
+  background-color: #C8A97E;
+  color: #FAF8F5;
+}
+
+/* ── Custom Cursor ── */
+.custom-cursor-dot {
+  width: 6px;
+  height: 6px;
+  background-color: #111828;
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  transition: background-color 0.2s ease, width 0.2s ease, height 0.2s ease;
+  transform: translate(-50%, -50%);
+}
+
+.custom-cursor-ring {
+  width: 32px;
+  height: 32px;
+  border: 1px solid #C8A97E;
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9998;
+  transition: transform 0.15s ease-out, width 0.3s ease, height 0.3s ease;
+  transform: translate(-50%, -50%);
+}
+
+.cursor-hover .custom-cursor-ring {
+  width: 48px;
+  height: 48px;
+}
+
+.cursor-hover .custom-cursor-dot {
+  background-color: #A8264A;
+  width: 8px;
+  height: 8px;
+}
+
+/* ── Ticker ── */
+.ticker-wrap {
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.ticker {
+  display: inline-block;
+  animation: ticker 30s linear infinite;
+}
+
+@keyframes ticker {
+  0% { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(-50%, 0, 0); }
+}
+
+/* ── Scroll Reveal ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.8s cubic-bezier(0.19, 1, 0.22, 1),
+              transform 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── No Scrollbar ── */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* ── Download CV button — mobile only ── */
+.dl-cv-mobile {
+  display: none;
+}
+
+/* ── Mobile: cursor off, section gap reduced ── */
+@media (max-width: 767px) {
+  body { cursor: auto; }
+  .custom-cursor-dot, .custom-cursor-ring { display: none; }
+  .dl-cv-mobile { display: flex; align-items: center; gap: 5px; position: fixed; top: 32px; right: 16px; z-index: 60; font-family: var(--font-dm-sans); font-size: 9px; font-weight: 700; letter-spacing: 0.18em; color: #ffffff; background: #A8264A; padding: 7px 13px; border-radius: 4px; text-decoration: none; }
+  .figure-corner { bottom: 44px !important; right: -23px !important; }
+  .figure-corner img { width: 130px !important; height: 210px !important; }
+  .figure-bubble { padding: 3px 7px !important; font-size: 9px !important; }
+}
+
