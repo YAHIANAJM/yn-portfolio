@@ -142,12 +142,12 @@ export default function FullPotentialPage() {
           className="absolute"
           style={{
             zIndex: 20,
-            width: isMobile ? "clamp(260px, 80vw, 340px)" : "clamp(260px, 33vw, 490px)",
-            height: isMobile ? "clamp(380px, 70vh, 520px)" : "clamp(400px, 80vh, 740px)",
+            width: isMobile ? "clamp(220px, 68vw, 290px)" : "clamp(260px, 33vw, 490px)",
+            height: isMobile ? "clamp(320px, 58vh, 440px)" : "clamp(400px, 80vh, 740px)",
             left: isMobile ? "50%" : "calc(50% - 300px)",
             top: "50%",
             marginLeft: isMobile ? "calc(0px - clamp(130px, 40vw, 170px))" : undefined,
-            marginTop: isMobile ? "calc(0px - clamp(190px, 35vh, 260px))" : "calc(0px - clamp(200px, 40vh, 370px))",
+            marginTop: isMobile ? "calc(0px - clamp(170px, 30vh, 230px))" : "calc(0px - clamp(200px, 40vh, 370px))",
           }}
         >
           <motion.div
@@ -193,14 +193,28 @@ export default function FullPotentialPage() {
           </motion.div>
         </div>
 
+        {/* ── Mobile "A MESSAGE FOR YOU" — above portrait ── */}
+        {isMobile && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }} animate={{ opacity: faded ? 0 : 1, y: faded ? -20 : 0 }}
+            transition={{ duration: faded ? 1.2 : 0.8, ease, delay: faded ? 0 : 0.4 }}
+            style={{ position: "absolute", zIndex: 35, top: "clamp(90px, 14vh, 120px)", left: "36%", right: 0, display: "flex", flexDirection: "column", alignItems: "flex-start", gap: 6 }}
+          >
+            <div style={{ fontFamily: "var(--font-dm-sans)", fontSize: 9, fontWeight: 700, letterSpacing: "0.25em", color: "#C8A97E", textTransform: "uppercase" }}>A MESSAGE FOR YOU</div>
+            <div style={{ fontFamily: "var(--font-bebas)", fontSize: "clamp(22px, 6vw, 32px)", color: "#A8264A", lineHeight: 1.1 }}>
+              GETTING HERE{" "}
+              <span style={{ color: "#F2EDE4" }}>MEANS SOMETHING.</span>
+            </div>
+          </motion.div>
+        )}
+
         {/* ── Mobile intro text (name + tagline) — shown only on mobile during intro ── */}
         {isMobile && (
           <motion.div
             initial={{ opacity: 0, y: 40 }} animate={{ opacity: faded ? 0 : 1, y: faded ? 40 : 0 }}
             transition={{ duration: faded ? 1.2 : 0.8, ease, delay: faded ? 0 : 0.5 }}
-            style={{ position: "absolute", zIndex: 35, bottom: "clamp(60px, 12vh, 100px)", left: 0, right: 0, display: "flex", flexDirection: "column", alignItems: "center", gap: 8 }}
+            style={{ position: "absolute", zIndex: 35, bottom: "clamp(60px, 12vh, 100px)", left: 0, right: 0, display: "flex", flexDirection: "column", alignItems: "center", gap: 6 }}
           >
-            <span style={{ fontFamily: "var(--font-dm-sans)", fontSize: 9, fontWeight: 700, letterSpacing: "0.25em", color: "#C8A97E", textTransform: "uppercase" }}>A MESSAGE FOR YOU</span>
             <h1 style={{ fontFamily: "var(--font-bebas)", fontSize: "clamp(44px, 12vw, 64px)", color: "#A8264A", lineHeight: 0.95, letterSpacing: "-0.01em", textAlign: "center" }}>
               YAHIA <span style={{ color: "#F2EDE4" }}>NAJM</span>
             </h1>
