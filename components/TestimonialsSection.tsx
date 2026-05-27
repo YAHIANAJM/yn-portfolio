@@ -361,10 +361,10 @@ export default function TestimonialsSection() {
                         <h3 style={{ fontFamily: "var(--font-bebas)", fontSize: 28, color: "#111828", letterSpacing: "0.04em", margin: "4px 0 0" }}>WHAT DO YOU SAY ?</h3>
                       </div>
 
-                      <div style={{ display: "flex", gap: 10 }}>
+                      <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
                         {[{ key: "firstName", placeholder: "First name *" }, { key: "lastName", placeholder: "Last name" }].map(({ key, placeholder }) => (
                           <input key={key} type="text" placeholder={placeholder} value={form[key as keyof FormState] as string} onChange={e => setForm(f => ({ ...f, [key]: e.target.value }))}
-                            style={{ flex: 1, fontFamily: "var(--font-dm-sans)", fontSize: 13, padding: "10px 14px", border: "1.5px solid rgba(17,24,40,0.12)", borderRadius: 8, outline: "none", background: "#faf8f5", color: "#111828" }} />
+                            style={{ flex: "1 1 120px", minWidth: 0, fontFamily: "var(--font-dm-sans)", fontSize: 13, padding: "10px 14px", border: "1.5px solid rgba(17,24,40,0.12)", borderRadius: 8, outline: "none", background: "#faf8f5", color: "#111828" }} />
                         ))}
                       </div>
 

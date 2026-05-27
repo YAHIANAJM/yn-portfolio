@@ -70,7 +70,20 @@ export default function HashModal() {
                   <span style={{ fontFamily: "var(--font-dm-sans)", fontSize: 9, fontWeight: 700, letterSpacing: "0.24em", color: "rgba(200,169,126,0.7)", textTransform: "uppercase" }}>YN PORTFOLIO</span>
                 </div>
 
-                {/* Figure — sits at bottom center on desktop, center on mobile */}
+                {/* Mobile: top-right label */}
+                <div className="md:hidden" style={{ position: "absolute", top: 14, right: 16, zIndex: 3, textAlign: "right" }}>
+                  <span style={{ fontFamily: "var(--font-bebas)", fontSize: 11, letterSpacing: "0.18em", color: "rgba(200,169,126,0.75)", textTransform: "uppercase", lineHeight: 1.2, display: "block" }}>So,</span>
+                  <span style={{ fontFamily: "var(--font-garamond)", fontSize: 11, fontStyle: "italic", color: "rgba(255,255,255,0.5)", lineHeight: 1.3, display: "block" }}>what did you decide?</span>
+                </div>
+
+                {/* Mobile: bottom-left name tag */}
+                <div className="md:hidden" style={{ position: "absolute", bottom: 12, left: 14, zIndex: 3 }}>
+                  <div style={{ width: 20, height: 2, background: "#A8264A", borderRadius: 1, marginBottom: 5 }} />
+                  <span style={{ fontFamily: "var(--font-bebas)", fontSize: 18, letterSpacing: "0.06em", color: "#ffffff", lineHeight: 1, display: "block" }}>YAHIA NAJM</span>
+                  <span style={{ fontFamily: "var(--font-dm-sans)", fontSize: 8, fontWeight: 700, letterSpacing: "0.2em", color: "rgba(200,169,126,0.65)", textTransform: "uppercase" }}>YN PORTFOLIO</span>
+                </div>
+
+                {/* Figure — desktop */}
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={FIGURE_SRC}
@@ -79,6 +92,7 @@ export default function HashModal() {
                   style={{ position: "absolute", bottom: 0, left: "50%", transform: "translateX(-50%)", width: "82%", objectFit: "contain", objectPosition: "bottom center" }}
                   onError={e => { (e.currentTarget as HTMLImageElement).style.display = "none"; }}
                 />
+                {/* Figure — mobile (centered) */}
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={FIGURE_SRC}
@@ -89,7 +103,7 @@ export default function HashModal() {
                 />
 
                 {/* Gradient overlay */}
-                <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(17,24,40,0.55) 0%, transparent 55%)", pointerEvents: "none" }} />
+                <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(17,24,40,0.65) 0%, transparent 50%)", pointerEvents: "none" }} />
 
                 {/* Bottom tag — desktop only */}
                 <div className="hidden md:block" style={{ position: "absolute", bottom: 22, left: 22, zIndex: 2 }}>
