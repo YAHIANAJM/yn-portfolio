@@ -10,6 +10,7 @@ import "./globals.css";
 import Image from "next/image";
 import { MusicProvider } from "@/components/MusicProvider";
 import FigureCorner from "@/components/FigureCorner";
+import MobileIdleManager from "@/components/MobileIdleManager";
 
 const bebasNeue = Bebas_Neue({
   weight: "400",
@@ -61,12 +62,13 @@ export default function RootLayout({
         precedence="default"
       />
       <body className="antialiased overflow-x-hidden">
+        <MobileIdleManager />
         {/* Fixed logo — top left, always visible */}
-        <div style={{ position: "fixed", top: "12px", left: "10px", zIndex: 60, width: 100, height: 100, borderRadius: "50%", background: "rgba(250,248,245,0.92)", backdropFilter: "blur(12px)", border: "1px solid rgba(200,169,126,0.25)", boxShadow: "0 2px 12px rgba(17,24,40,0.08)", display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden" }}>
+        <div data-mobile-ui className="mobile-logo" style={{ position: "fixed", top: "12px", left: "10px", zIndex: 60, width: 100, height: 100, borderRadius: "50%", background: "rgba(250,248,245,0.92)", backdropFilter: "blur(12px)", border: "1px solid rgba(200,169,126,0.25)", boxShadow: "0 2px 12px rgba(17,24,40,0.08)", display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden" }}>
           <Image src="/Simple Monoline Interior Designer Initials Logo-Photoroom.png" alt="YN Logo" width={90} height={90} style={{ objectFit: "contain" }} priority />
         </div>
         {/* Download CV — top right, mobile only */}
-        <a href="/cv-yahia-najm.pdf" download className="dl-cv-mobile">
+        <a href="/cv-yahia-najm.pdf" download data-mobile-ui className="dl-cv-mobile">
           <svg viewBox="0 0 24 24" style={{ width: 10, height: 10, fill: "currentColor" }}><path d="M12 16l-5-5h3V4h4v7h3l-5 5zm-7 2h14v2H5v-2z"/></svg>
           DOWNLOAD CV
         </a>

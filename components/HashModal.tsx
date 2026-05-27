@@ -57,39 +57,49 @@ export default function HashModal() {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 30 }}
               transition={{ type: "spring", stiffness: 280, damping: 26 }}
-              style={{ display: "flex", borderRadius: 22, overflow: "hidden", boxShadow: "0 40px 100px rgba(17,24,40,0.28)", minHeight: 420 }}
+              className="flex-col md:flex-row"
+              style={{ display: "flex", borderRadius: 22, overflow: "hidden", boxShadow: "0 40px 100px rgba(17,24,40,0.28)" }}
             >
-              {/* ── Left: figure ── */}
+              {/* ── Figure panel (left on desktop, top on mobile) ── */}
               <div
-                className="hidden md:block"
-                style={{ flex: "0 0 42%", background: "#111828", position: "relative", overflow: "hidden" }}
+                className="md:flex-none"
+                style={{ background: "#111828", position: "relative", overflow: "hidden", flex: "0 0 42%", minHeight: 200 }}
               >
-                {/* Subtle top label */}
-                <div style={{ position: "absolute", top: 22, left: 22, zIndex: 2 }}>
+                {/* Top label — desktop only */}
+                <div className="hidden md:block" style={{ position: "absolute", top: 22, left: 22, zIndex: 2 }}>
                   <span style={{ fontFamily: "var(--font-dm-sans)", fontSize: 9, fontWeight: 700, letterSpacing: "0.24em", color: "rgba(200,169,126,0.7)", textTransform: "uppercase" }}>YN PORTFOLIO</span>
                 </div>
 
-                {/* Figure image — replace src when ready */}
+                {/* Figure — sits at bottom center on desktop, center on mobile */}
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={FIGURE_SRC}
                   alt="Figure"
-                  style={{ position: "absolute", bottom: 0, left: "50%", transform: "translateX(-50%)", width: "82%", objectFit: "contain", objectPosition: "bottom center", display: "block" }}
+                  className="hidden md:block"
+                  style={{ position: "absolute", bottom: 0, left: "50%", transform: "translateX(-50%)", width: "82%", objectFit: "contain", objectPosition: "bottom center" }}
+                  onError={e => { (e.currentTarget as HTMLImageElement).style.display = "none"; }}
+                />
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={FIGURE_SRC}
+                  alt="Figure"
+                  className="md:hidden"
+                  style={{ display: "block", margin: "0 auto", height: 180, objectFit: "contain", objectPosition: "bottom center" }}
                   onError={e => { (e.currentTarget as HTMLImageElement).style.display = "none"; }}
                 />
 
-                {/* Gradient overlay at bottom */}
+                {/* Gradient overlay */}
                 <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(17,24,40,0.55) 0%, transparent 55%)", pointerEvents: "none" }} />
 
-                {/* Bottom tag */}
-                <div style={{ position: "absolute", bottom: 22, left: 22, zIndex: 2 }}>
+                {/* Bottom tag — desktop only */}
+                <div className="hidden md:block" style={{ position: "absolute", bottom: 22, left: 22, zIndex: 2 }}>
                   <div style={{ width: 28, height: 2, background: "#A8264A", borderRadius: 1, marginBottom: 8 }} />
                   <span style={{ fontFamily: "var(--font-garamond)", fontSize: 13, fontStyle: "italic", color: "rgba(255,255,255,0.65)", lineHeight: 1.5 }}>someone sent you<br />something worth seeing.</span>
                 </div>
               </div>
 
-              {/* ── Right: content ── */}
-              <div style={{ flex: 1, background: "#faf8f5", padding: "clamp(28px, 5vw, 48px)", display: "flex", flexDirection: "column", justifyContent: "center", gap: 0 }}>
+              {/* ── Content panel (right on desktop, bottom on mobile) ── */}
+              <div style={{ flex: 1, background: "#faf8f5", padding: "clamp(22px, 4vw, 48px)", display: "flex", flexDirection: "column", justifyContent: "center", gap: 0 }}>
                 {/* Eyebrow */}
                 <p style={{ fontFamily: "var(--font-dm-sans)", fontSize: 9, fontWeight: 700, letterSpacing: "0.26em", color: "#C8A97E", textTransform: "uppercase", margin: "0 0 12px" }}>
                   YOU WERE INVITED

@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 import { usePathname } from "next/navigation";
 
-const SECTION_PATHS = ["/", "/about", "/fits", "/beyond", "/agency", "/contact", "/testimonials"];
+const SECTION_PATHS = ["/", "/about", "/fits", "/code", "/beyond", "/agency", "/contact", "/testimonials"];
 
 function sectionPath(id: string) {
   // hero section has no clean slug — fall back to root
